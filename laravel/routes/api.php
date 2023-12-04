@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('user', UserController::class);
+Route::get('getResidents','UserController@getResidents');
+
+Route::post('user/{id}','UserController@updateMobile');
