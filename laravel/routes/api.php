@@ -17,8 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware' => ['auth:sanctum']], function(){
 
 Route::resource('user', UserController::class);
 Route::get('getResidents','UserController@getResidents');
 
 Route::post('user/{id}','UserController@updateMobile');
+});
+Route::post('signinDorm', 'AuthController@signinDorm');
+Route::post('signinHostel', 'AuthController@signinHostel');
+
+Route::post('signout', 'AuthController@signout')->name('apiSignout');
