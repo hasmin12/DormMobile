@@ -19,6 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::group(['middleware' => ['auth:sanctum']], function(){
 
+Route::get('getAnnouncement','DashboardController@getAnnouncement');
+Route::resource('announcement', AnnouncementController::class);
+Route::post('announcement/{id}','AnnouncementController@update');
+
 Route::resource('user', UserController::class);
 Route::get('getResidents','UserController@getResidents');
 
